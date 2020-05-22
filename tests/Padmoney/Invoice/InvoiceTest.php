@@ -8,24 +8,24 @@ class InvoiceTest extends \Padmoney\Tests\AbstractTestCase
 {
     protected $invoice;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->invoice = new \Padmoney\Invoice\Invoice([]);
         $this->invoice->client = $this->mock(\Padmoney\Http\Client::class);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->invoice = null;
     }
 
-    public function testEndpoint()
+    public function testEndpoint(): void
     {
         $invoice = new \Padmoney\Invoice\Invoice([]);
         $this->assertSame('invoices', $invoice->endpoint());
     }
 
-    public function testCancel()
+    public function testCancel(): void
     {
         $id = 'e9c613f3-1c50-4b39-9db6-b12ace1793bf';
 
@@ -39,7 +39,7 @@ class InvoiceTest extends \Padmoney\Tests\AbstractTestCase
         $this->invoice->cancel($id);
     }
 
-    public function testCreate()
+    public function testCreate(): void
     {
         $params = [
             'amount' => 42.99,
@@ -55,7 +55,7 @@ class InvoiceTest extends \Padmoney\Tests\AbstractTestCase
         $this->invoice->create($params);
     }
 
-    public function testGet()
+    public function testGet(): void
     {
         $id = '2bede598-e27b-4505-bff1-052fd3e2f6ca';
         $stdClass = new \stdClass;
@@ -68,7 +68,7 @@ class InvoiceTest extends \Padmoney\Tests\AbstractTestCase
         $this->invoice->get($id);
     }
 
-    public function testItems()
+    public function testItems(): void
     {
         $id = '51224058-c908-4017-91a0-67a9e60e852b';
 
@@ -82,7 +82,7 @@ class InvoiceTest extends \Padmoney\Tests\AbstractTestCase
         $this->invoice->items($id);
     }
 
-    public function testList()
+    public function testList(): void
     {
         $params = [
         ];

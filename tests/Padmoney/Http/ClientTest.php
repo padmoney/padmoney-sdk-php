@@ -12,7 +12,7 @@ class ClientTest extends \Padmoney\Tests\AbstractTestCase
     private $token = 'cGFkbW9uZXk=';
     private $secret = '123';
 
-    public function setUp()
+    public function setUp(): void
     {
         $authHeaders = [
             'Padmoney-Token' => $this->token,
@@ -21,12 +21,12 @@ class ClientTest extends \Padmoney\Tests\AbstractTestCase
         $this->client = new Client('', $authHeaders);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->client = null;
     }
 
-    public function testHeaders()
+    public function testHeaders(): void
     {
         $headers = $this->client->headers()['headers'];
 

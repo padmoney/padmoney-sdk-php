@@ -8,7 +8,7 @@ use Padmoney\Padmoney;
 
 class PadmoneyTest extends \Padmoney\Tests\AbstractTestCase
 {
-    public function testApiUriProduction()
+    public function testApiUriProduction(): void
     {
         $expected = Padmoney::PADMONEY_URI;
 
@@ -19,7 +19,7 @@ class PadmoneyTest extends \Padmoney\Tests\AbstractTestCase
         $this->assertSame($expected, Padmoney::apiUri('PROD'), 'PROD');
     }
 
-    public function testApiUriSandbox()
+    public function testApiUriSandbox(): void
     {
         $expected = Padmoney::PADMONEY_URI_SANDBOX;
 
