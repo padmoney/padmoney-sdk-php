@@ -1,0 +1,48 @@
+<?php
+
+namespace Padmoney\Invoice;
+
+class Invoice extends \Padmoney\AbstractClient implements InvoiceInterface
+{
+    /**
+     * Constructor
+     *
+     * @param array         $args
+     */
+    public function __construct(array $args)
+    {
+        $endpoint = 'invoices';
+        parent::__construct($args, $endpoint);
+    }
+
+    /**
+     * Create invoice
+     *
+     * @param array  $params
+     */
+    public function create(array $params = [])
+    {
+        return $this->requestPost(null, null, $params);
+    }
+
+    /**
+     * Get invoice
+     *
+     * @param string  $id
+     */
+    public function get(string $id)
+    {
+        return $this->requestGet($id, null, null);
+    }
+
+
+    /**
+     * List invoices
+     *
+     * @param array  $query
+     */
+    public function list(array $query)
+    {
+        return $this->requestGet(null, null, $query);
+    }
+}
