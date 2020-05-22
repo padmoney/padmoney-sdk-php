@@ -18,7 +18,7 @@ composer require padmoney/sdk
 
 ## Uso
 
-Para mais detalhes sobre os serviços e suas funcionalidades, quais campos enviar e demais informações, verifique a [documentação de uso da API](https://developers.padmoney.com/).
+Para mais detalhes sobre os serviços e suas funcionalidades, quais campos enviar e demais informações, verifique [sobre o SDK na documentação da API](https://developers.padmoney.com/padmoney-sdk-php).
 
 Disponibilizamos também o diretório `samples`, que contém exemplos de diversas chamadas à API do Padmoney utilizando o SDK.
 
@@ -48,8 +48,8 @@ $autenticacao = [
     'token' => 'dG9rZW4tYXBpLVBhZG1vbmV5',
     'token-secret' => '123',
 ];
+$invoice = new \Padmoney\Invoice\Invoice($autenticacao);
 
-$invoice = new \Padmoney\Invoice\Invoice($auth);
 
 $params = [
     'amount' => 1.99,
@@ -70,7 +70,8 @@ $autenticacao = [
     'token-secret' => '123',
 ];
 
-$invoice = new \Padmoney\Invoice\Invoice($auth);
+$invoice = new \Padmoney\Invoice\Invoice($autenticacao);
+
 
 $query = [
     'payer_id' => '',
@@ -81,10 +82,3 @@ $all = $invoice->list($query);
 var_dump($all);
 
 ```
-
-Status válidos:
-- `rejected`
-- `opened`
-- `overdue`
-- `paid`
-- `canceled`
