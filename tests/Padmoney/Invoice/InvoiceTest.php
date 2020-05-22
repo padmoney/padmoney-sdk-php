@@ -25,6 +25,20 @@ class InvoiceTest extends \Padmoney\Tests\AbstractTestCase
         $this->assertSame('invoices', $invoice->endpoint());
     }
 
+    public function testCancel()
+    {
+        $id = 'e9c613f3-1c50-4b39-9db6-b12ace1793bf';
+
+        $stdClass = new \stdClass;
+        $this->invoice->client
+            ->expects($this->once())
+            ->method('put')
+            ->with("invoices/$id/cancel", [])
+            ->willReturn($stdClass);
+
+        $this->invoice->cancel($id);
+    }
+
     public function testCreate()
     {
         $params = [
@@ -39,6 +53,33 @@ class InvoiceTest extends \Padmoney\Tests\AbstractTestCase
             ->willReturn($stdClass);
 
         $this->invoice->create($params);
+    }
+
+    public function testGet()
+    {
+        $id = '2bede598-e27b-4505-bff1-052fd3e2f6ca';
+        $stdClass = new \stdClass;
+        $this->invoice->client
+            ->expects($this->once())
+            ->method('get')
+            ->with("invoices/$id", [])
+            ->willReturn($stdClass);
+
+        $this->invoice->get($id);
+    }
+
+    public function testItems()
+    {
+        $id = '51224058-c908-4017-91a0-67a9e60e852b';
+
+        $stdClass = new \stdClass;
+        $this->invoice->client
+            ->expects($this->once())
+            ->method('get')
+            ->with("invoices/$id/items", [])
+            ->willReturn($stdClass);
+
+        $this->invoice->items($id);
     }
 
     public function testList()

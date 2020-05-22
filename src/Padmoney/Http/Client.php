@@ -73,9 +73,11 @@ class Client implements ClientInterface
 
     private function request(string $method, string $urn, array $options)
     {
+        $uri = $this->uri($urn);
+
         $client = new \GuzzleHttp\Client($this->headers());
         try {
-            $response = $client->request($method, $this->uri($urn), $options);
+            $response = $client->request($method, $uri, $options);
         } catch (ClientException $e) {
             $response = $e->getResponse();
         }

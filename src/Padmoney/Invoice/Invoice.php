@@ -7,12 +7,22 @@ class Invoice extends \Padmoney\AbstractClient implements InvoiceInterface
     /**
      * Constructor
      *
-     * @param array         $args
+     * @param array  $args
      */
     public function __construct(array $args)
     {
         $endpoint = 'invoices';
         parent::__construct($args, $endpoint);
+    }
+
+    /**
+     * Cancel invoice
+     *
+     * @param string  $id
+     */
+    public function cancel(string $id)
+    {
+        return $this->requestPut($id, 'cancel', []);
     }
 
     /**
@@ -32,9 +42,8 @@ class Invoice extends \Padmoney\AbstractClient implements InvoiceInterface
      */
     public function get(string $id)
     {
-        return $this->requestGet($id, null, null);
+        return $this->requestGet($id, null, []);
     }
-
 
     /**
      * List invoices
@@ -44,5 +53,15 @@ class Invoice extends \Padmoney\AbstractClient implements InvoiceInterface
     public function list(array $query)
     {
         return $this->requestGet(null, null, $query);
+    }
+
+    /**
+     * List invoices items
+     *
+     * @param string  $invoiceID
+     */
+    public function items(string $invoiceID, array $query = [])
+    {
+        return $this->requestGet($invoiceID, 'items', $query);
     }
 }

@@ -6,13 +6,18 @@ use Exception;
 
 class RequestException extends Exception
 {
-    protected $code;
     protected $data = [];
 
     public function __construct(int $code, array $data = [])
     {
         $this->code = $code;
         $this->data = $data;
+        $this->message = $this->getErrorMessage();
+    }
+
+    private function getErrorMessage()
+    {
+        return $this->data['error'];
     }
 
     public function toArray()

@@ -23,9 +23,9 @@ final class Padmoney
     public static function apiUri(?string $env)
     {
         if (self::env($env) == self::DEV) {
-            return Padmoney::PADMONEY_URI_SANDBOX;
+            return self::PADMONEY_URI_SANDBOX;
         }
-        return Padmoney::PADMONEY_URI;
+        return self::PADMONEY_URI;
     }
 
     /**
@@ -35,7 +35,6 @@ final class Padmoney
      */
     private static function env(?string $env)
     {
-        $env = isset($env) ? $env : 'prod';
         if (strtolower($env) == self::DEV) {
             return self::DEV;
         }
